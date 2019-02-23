@@ -10,7 +10,19 @@ spring:
 
   datasource:
     url: "jdbc:h2:mem:prindify;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+    driver-class-name:
 
   jackson:
     default-property-inclusion: non_null
     property-naming-strategy: "SNAKE_CASE"
+
+
+  session:
+    store-type: redis
+
+  redis:
+    host: "localhost"
+    password: ""
+    port: 6379
+
+

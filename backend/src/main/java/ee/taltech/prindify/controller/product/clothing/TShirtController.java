@@ -1,5 +1,6 @@
 package ee.taltech.prindify.controller.product.clothing;
 
+import ee.taltech.prindify.exception.ProductNotFoundException;
 import ee.taltech.prindify.model.clothing.TShirt;
 import ee.taltech.prindify.repository.clothing.TShirtRepository;
 import java.util.List;
@@ -28,7 +29,7 @@ public class TShirtController {
 
     @GetMapping("/t-shirts/{id}")
     TShirt findTShirtById(@PathVariable int id) {
-        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @GetMapping("/t-shirts")

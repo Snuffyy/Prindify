@@ -1,5 +1,6 @@
 package ee.taltech.prindify.controller.product.cutlery;
 
+import ee.taltech.prindify.exception.ProductNotFoundException;
 import ee.taltech.prindify.model.cutlery.Cup;
 import ee.taltech.prindify.repository.cutlery.CupRepository;
 import java.util.List;
@@ -27,7 +28,7 @@ public class CupController {
 
     @GetMapping("/cups/{id}")
     Cup findCupById(@PathVariable int id) {
-        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @GetMapping("/cups")

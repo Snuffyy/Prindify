@@ -4,5 +4,5 @@ import ee.taltech.prindify.model.clothing.Tops;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TopsRepository<ObjectThat extends Tops> extends ClothingRepository<ObjectThat> {
+public interface TopsRepository<T extends Tops> extends ClothingRepository<T> {
 }
