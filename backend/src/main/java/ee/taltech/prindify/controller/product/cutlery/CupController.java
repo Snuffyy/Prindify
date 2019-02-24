@@ -32,7 +32,7 @@ public class CupController {
     }
 
     @GetMapping("/cups")
-    List<Cup> findAllCup() {
+    List<Cup> findAllCups() {
         return repository.findAll();
     }
 }
