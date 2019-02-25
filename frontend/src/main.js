@@ -10,6 +10,12 @@ Vue.mixin({
             shared.isWatchingProduct = true
             shared.product = product
         },
+        deleteFromCart: function (item) {
+            shared.inCart.splice(shared.inCart.indexOf(item), 1)
+        },
+        addToCart: function (item) {
+            shared.inCart.push(item)
+        },
         returnShared: function () {
             return shared
         },
@@ -110,6 +116,9 @@ const shared =  {
 // }
 //
 // Vue.use(shared)
+export default {
+    shared
+}
 
 new Vue({
     render: h => h(App),

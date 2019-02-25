@@ -6,7 +6,7 @@
             <router-link to="/design">Design</router-link> |
             <router-link to="/about">About</router-link> |
             <router-link to="/contact">Contact</router-link> |
-            <router-link to="/cart" v-bind:cartList="returnShared().inCart">SHOPPING CART</router-link>
+            <router-link to="/cart">SHOPPING CART</router-link>
             <!--<p>{{returnShared().inCart}}</p>-->
         </div>
     </header>

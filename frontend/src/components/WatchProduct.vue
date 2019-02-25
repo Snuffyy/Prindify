@@ -14,7 +14,7 @@
                 <div class="price"><p>Price: <strong>{{shared.product.priceEur}} €</strong></p></div>
             </div>
         </div>
-        <div class="addToCartButton"><button type="button">Liisa korvi</button></div>
+        <div class="addToCartButton"><button type="button" v-on:click="addToCart(shared.product)">Liisa korvi</button></div>
         <p>Ka vaatavad:</p>
         <!--<Product v-bind:products="shared.productsList" />-->
     </div>
