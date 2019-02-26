@@ -7,6 +7,8 @@ import ee.taltech.prindify.model.basket.Basket;
 import ee.taltech.prindify.model.basket.Item;
 import ee.taltech.prindify.service.BasketService;
 import ee.taltech.prindify.service.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(value = "Basket", consumes = "application/json", produces = "application/json")
 @RestController
 public class BasketController {
 
@@ -28,11 +31,13 @@ public class BasketController {
         this.productService = productService;
     }
 
+    @ApiOperation(value = "Get Basket for current session")
     @GetMapping("/baskets")
-    public Basket findBasketBySession(HttpSession session) {
+    public Basket getBasketBySession(HttpSession session) {
         return basketService.findBasket(session);
     }
 
+    @ApiOperation(value = "Add Item to Basket for current session")
     @PostMapping("/baskets/item")
     public Basket addItemToBasket(@RequestBody ItemQuery itemQuery, HttpSession session) {
         Basket basket = basketService.findBasket(session);
@@ -42,8 +47,9 @@ public class BasketController {
         return basketService.addItem(basket, item);
     }
 
+    @ApiOperation(value = "Clear Basket for current session")
     @DeleteMapping("/baskets")
-    public Basket clearBasket(HttpSession session){
+    public Basket clearBasket(HttpSession session) {
         Basket basket = basketService.findBasket(session);
         basketService.clear(basket);
 
