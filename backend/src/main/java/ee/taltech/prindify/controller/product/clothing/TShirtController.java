@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,5 +42,17 @@ public class TShirtController {
     @GetMapping("/t-shirts")
     List<TShirt> findAllTShirts(HttpSession session) {
         return repository.findAll();
+    }
+
+    @ApiOperation(value = "Delete T-Shirt by id")
+    @DeleteMapping("/t-shirts/{id}")
+    void deleteTShirtById(@PathVariable int id) {
+        repository.deleteById(id);
+    }
+
+    @ApiOperation(value = "Delete all T-Shirts")
+    @DeleteMapping("/t-shirts")
+    void deleteAllTShirts() {
+        repository.deleteAll();
     }
 }

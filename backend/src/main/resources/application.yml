@@ -16,7 +16,6 @@ spring:
     default-property-inclusion: non_null
     property-naming-strategy: "SNAKE_CASE"
 
-
   session:
     store-type: redis
 
@@ -24,5 +23,8 @@ spring:
     host: "localhost"
     password: ""
     port: 6379
+
+client:
+  host: "http://localhost:8081"
 
 
