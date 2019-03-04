@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,13 +13,13 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private Type type;
     private String name;
     private String description;
     private String imageUrl;

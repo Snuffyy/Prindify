@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public abstract class Tops extends Clothing {
+public abstract class Top extends Clothing {
 
     @Getter
     @Setter

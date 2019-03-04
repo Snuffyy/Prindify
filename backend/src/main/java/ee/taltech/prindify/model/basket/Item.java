@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 public class Item {
 
     private Product product;
-
     private int count;
 }

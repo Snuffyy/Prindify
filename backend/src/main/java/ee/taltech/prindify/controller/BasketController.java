@@ -1,6 +1,5 @@
 package ee.taltech.prindify.controller;
 
-import ee.taltech.prindify.dto.ItemQuery;
 import ee.taltech.prindify.exception.ProductNotFoundException;
 import ee.taltech.prindify.model.Product;
 import ee.taltech.prindify.model.basket.Basket;
@@ -39,12 +38,10 @@ public class BasketController {
 
     @ApiOperation(value = "Add Item to Basket for current session")
     @PostMapping("/baskets/item")
-    public Basket addItemToBasket(@RequestBody ItemQuery itemQuery, HttpSession session) {
+    public Basket addItemToBasket(@RequestBody Item item, HttpSession session) {
         Basket basket = basketService.findBasket(session);
 
-        Item item = validateQuery(itemQuery);
-
-        return basketService.addItem(basket, item);
+        return basketService.addItem(basket, validateItem(item));
     }
 
     @ApiOperation(value = "Clear Basket for current session")
@@ -56,7 +53,7 @@ public class BasketController {
         return basket;
     }
 
-    private Item validateQuery(ItemQuery item) {
+    private Item validateItem(Item item) {
         int id = item.getProduct().getId();
 
         Product product = productService.findById(id)

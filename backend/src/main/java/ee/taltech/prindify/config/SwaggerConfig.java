@@ -23,7 +23,7 @@ public class SwaggerConfig {
                 new ApiInfo(
                     "Prindify Application",
                     "Merchandise shop with possibility of ordering your own prints to be done on T-shirts.",
-                    "aplha",
+                    "alpha",
                     "",
                     new Contact("Maksym Maliarov", "", ""),
                     "",
