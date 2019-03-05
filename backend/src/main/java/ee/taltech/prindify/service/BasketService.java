@@ -2,19 +2,23 @@ package ee.taltech.prindify.service;
 
 import ee.taltech.prindify.model.basket.Basket;
 import ee.taltech.prindify.model.basket.Item;
-import javax.servlet.http.HttpSession;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
 
-public interface BasketService {
+@Service
+public interface BasketService<T> {
 
-    Basket initBasket(HttpSession session);
+    Optional<Basket> findBasket(T discriminator);
 
-    Basket findBasket(HttpSession session);
+    Basket createBasket(T discriminator);
+
+    Basket updateBasket(Basket old, Basket basket);
 
     Basket addItem(Basket basket, Item item);
 
-    Basket setCount(Basket basket, Item item, int count);
+    Basket updateItem(Basket basket, String id, Item item);
 
-    Basket removeItem(Basket basket, Item item);
+    Basket removeItem(Basket basket, String id);
 
     void clear(Basket basket);
 }

@@ -1,6 +1,6 @@
 package ee.taltech.prindify.controller.product.clothing;
 
-import ee.taltech.prindify.exception.ProductNotFoundException;
+import ee.taltech.prindify.exception.ItemValidationException;
 import ee.taltech.prindify.model.clothing.Sweater;
 import ee.taltech.prindify.repository.clothing.SweaterRepository;
 import io.swagger.annotations.Api;
@@ -34,7 +34,7 @@ public class SweaterController {
     @ApiOperation(value = "Get Sweater by id")
     @GetMapping("/sweaters/{id}")
     Sweater findSweaterById(@PathVariable int id) {
-        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new ItemValidationException(id));
     }
 
     @ApiOperation(value = "Get all Sweaters")

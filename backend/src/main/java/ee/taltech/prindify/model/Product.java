@@ -14,14 +14,18 @@ import lombok.NoArgsConstructor;
 public
 @Data
 @NoArgsConstructor
-class Product {
+class Product implements Metadata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private Type type;
     private String name;
     private String description;
     private String imageUrl;
     private float price;
+
+    @Override
+    public Type getType() {
+        return Type.GENERIC;
+    }
 }

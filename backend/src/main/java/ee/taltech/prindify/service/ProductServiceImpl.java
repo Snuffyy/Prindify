@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService<Product> {
 
-    @Autowired
     private final ProductRepository<Product> productRepository;
 
-    public ProductServiceImpl(
-        ProductRepository<Product> productRepository) {
+    @Autowired
+    public ProductServiceImpl(ProductRepository<Product> productRepository) {
         this.productRepository = productRepository;
     }
+
 
     @Override
     public Optional<Product> findById(int id) {

@@ -1,6 +1,6 @@
 package ee.taltech.prindify.controller.product.cutlery;
 
-import ee.taltech.prindify.exception.ProductNotFoundException;
+import ee.taltech.prindify.exception.ItemValidationException;
 import ee.taltech.prindify.model.cutlery.Cup;
 import ee.taltech.prindify.repository.cutlery.CupRepository;
 import io.swagger.annotations.Api;
@@ -34,7 +34,7 @@ public class CupController {
     @ApiOperation(value = "Get Cup by id")
     @GetMapping("/cups/{id}")
     Cup findCupById(@PathVariable int id) {
-        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new ItemValidationException(id));
     }
 
     @ApiOperation(value = "Get all Cups")

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 @Entity
 public class Cup extends Cutlery {
 
+
     @Override
     public Type getType() {
         return Type.CUP;
