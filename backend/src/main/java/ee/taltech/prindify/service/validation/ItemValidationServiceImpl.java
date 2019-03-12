@@ -1,4 +1,4 @@
-package ee.taltech.prindify.service;
+package ee.taltech.prindify.service.validation;
 
 import ee.taltech.prindify.model.basket.Item;
 import org.springframework.stereotype.Service;

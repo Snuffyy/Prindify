@@ -1,15 +1,13 @@
 package ee.taltech.prindify.controller;
 
-import ee.taltech.prindify.exception.ItemValidationException;
+import ee.taltech.prindify.dto.query.ItemQueryObject;
 import ee.taltech.prindify.exception.ResponseBasketNotFoundException;
-import ee.taltech.prindify.model.Product;
 import ee.taltech.prindify.model.basket.Basket;
 import ee.taltech.prindify.model.basket.Item;
-import ee.taltech.prindify.service.BasketService;
-import ee.taltech.prindify.service.ProductService;
+import ee.taltech.prindify.service.basket.BasketService;
+import ee.taltech.prindify.service.query.ItemRequestQueryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.UUID;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class BasketController {
 
     private final BasketService<HttpSession> basketService;
-    private final ProductService<Product> productService;
+    private final ItemRequestQueryService itemRequestQueryService;
 
     @Autowired
     public BasketController(BasketService<HttpSession> basketService,
-        ProductService<Product> productService) {
+        ItemRequestQueryService itemRequestQueryService) {
         this.basketService = basketService;
-        this.productService = productService;
+        this.itemRequestQueryService = itemRequestQueryService;
     }
 
     @ApiOperation(value = "Get Basket for current session")
@@ -51,8 +49,10 @@ public class BasketController {
 
     @ApiOperation(value = "Add Item to Basket for current session")
     @PostMapping("/baskets/item")
-    public Basket addItemToBasket(@RequestBody Item _item, HttpSession session) {
-        Item item = validateItem(_item);
+    public Basket addItemToBasket(@RequestBody ItemQueryObject itemQueryObject,
+        HttpSession session) {
+
+        Item item = itemRequestQueryService.convert(itemQueryObject);
         Basket basket = findBasket(session);
 
         return basketService.addItem(basket, item);
@@ -60,11 +60,12 @@ public class BasketController {
 
     @ApiOperation(value = "Update Item in Basket for current session")
     @PutMapping("/baskets/item/{id}")
-    public Basket updateItemInBasket(@PathVariable("id") String itemId, @RequestBody Item _item,
+    public Basket updateItemInBasket(@PathVariable("id") String itemId,
+        @RequestBody ItemQueryObject itemQueryObject,
         HttpSession session) {
 
+        Item item = itemRequestQueryService.convert(itemQueryObject);
         Basket basket = findBasket(session);
-        Item item = validateItem(_item);
 
         return basketService.updateItem(basket, itemId, item);
     }
@@ -83,13 +84,5 @@ public class BasketController {
             .orElseThrow(() -> new ResponseBasketNotFoundException(session.getId()));
     }
 
-    private Item validateItem(Item item) {
-        int id = item.getProduct().getId();
-
-        Product product = productService.findById(id)
-            .orElseThrow(() -> new ItemValidationException(item));
-
-        return new Item(UUID.randomUUID().toString(), product, item.getCount());
-    }
 }
 

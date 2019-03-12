@@ -1,4 +1,4 @@
-package ee.taltech.prindify.service;
+package ee.taltech.prindify.service.product;
 
 import ee.taltech.prindify.model.Product;
 import java.util.Optional;

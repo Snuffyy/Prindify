@@ -1,8 +1,9 @@
-package ee.taltech.prindify.service;
+package ee.taltech.prindify.service.basket;
 
 import ee.taltech.prindify.model.basket.Basket;
 import ee.taltech.prindify.model.basket.Item;
 import ee.taltech.prindify.repository.basket.BasketRepository;
+import ee.taltech.prindify.service.validation.ItemValidationService;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class BasketServiceHttpSession implements BasketService<HttpSession> {
 
     private final BasketRepository<HttpSession> basketRepository;
-
     private final ItemValidationService itemValidationService;
 
     @Autowired
@@ -28,15 +28,9 @@ public class BasketServiceHttpSession implements BasketService<HttpSession> {
     }
 
     @Override
-    public Basket createBasket(HttpSession session) {
-        return basketRepository.createBasket(session);
+    public void createBasket(HttpSession session) {
+        basketRepository.createBasket(session);
     }
-
-    @Override
-    public Basket updateBasket(Basket old, Basket basket) {
-        return basketRepository.updateBasket(old, basket);
-    }
-
 
     @Override
     public Basket addItem(Basket basket, Item item) {

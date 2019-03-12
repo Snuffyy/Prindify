@@ -23,13 +23,6 @@ public class BasketRepositoryHttpSession implements BasketRepository<HttpSession
     }
 
     @Override
-    public Basket updateBasket(Basket old, Basket basket) {
-        old.setItems(basket.getItems());
-
-        return old;
-    }
-
-    @Override
     public void clear(Basket basket) {
         basket.getItems().clear();
     }

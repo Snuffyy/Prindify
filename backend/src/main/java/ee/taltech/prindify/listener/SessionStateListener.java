@@ -1,6 +1,6 @@
 package ee.taltech.prindify.listener;
 
-import ee.taltech.prindify.service.BasketService;
+import ee.taltech.prindify.service.basket.BasketService;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

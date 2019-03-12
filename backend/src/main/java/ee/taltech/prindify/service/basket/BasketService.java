@@ -1,4 +1,4 @@
-package ee.taltech.prindify.service;
+package ee.taltech.prindify.service.basket;
 
 import ee.taltech.prindify.model.basket.Basket;
 import ee.taltech.prindify.model.basket.Item;
@@ -10,9 +10,7 @@ public interface BasketService<T> {
 
     Optional<Basket> findBasket(T discriminator);
 
-    Basket createBasket(T discriminator);
-
-    Basket updateBasket(Basket old, Basket basket);
+    void createBasket(T discriminator);
 
     Basket addItem(Basket basket, Item item);
 
