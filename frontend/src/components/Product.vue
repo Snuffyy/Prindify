@@ -12,7 +12,7 @@
                 <img src="https://via.placeholder.com/150/efefef/000000?text=Tshirt" alt="product">
                 <p class="productName">{{product.productName}}</p>
                 <p>Price: <strong>{{product.priceEur}} €</strong></p>
-                <div class="watchButtonDiv"><button type="button" v-on:click="watchItem(product)">Vaata</button></div>
+                <div class="watchButtonDiv"><button type="button" v-on:click="watchItem(product)">Watch</button></div>
             </div>
         </div>
     </div>

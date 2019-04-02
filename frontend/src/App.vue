@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <router-view :cartList="returnShared().inCart" />
-    <Footer />
+    <!--<Footer />-->
   </div>
 </template>
 

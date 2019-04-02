@@ -13,6 +13,7 @@
 <style scoped>
 .footer {
     display: block;
+    /*position: fixed;*/
     position: fixed;
     text-align: center;
     left: 0;
@@ -20,6 +21,6 @@
     width: 100%;
     background-color: dodgerblue;
     color: white;
-    padding: 25px;
+    padding: 15px;
 }
 </style>

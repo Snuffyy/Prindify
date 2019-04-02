@@ -16,6 +16,20 @@ Vue.mixin({
         addToCart: function (item) {
             shared.inCart.push(item)
         },
+        addDesign: function () {
+            let designed = {
+                id: 1,
+                productName: "My design",
+                description: "N/A (self-designed)",
+                material: document.querySelector("select[name='material']").value,
+                category: "T-shirts",
+                size: document.querySelector("input[name='size']:checked").value,
+                available: true,
+                priceEur: 20,
+                imageLink: "https://google.com" // TODO replace
+            }
+            shared.inCart.push(designed)
+        },
         returnShared: function () {
             return shared
         },
@@ -91,7 +105,8 @@ const shared =  {
             size: "M",
             available: true,
             priceEur: 25,
-            imageLink: "https://google.com"
+            imageLink: "https://google.com",
+            quantity: 2
         },
         {
             id: 2,
@@ -102,7 +117,8 @@ const shared =  {
             size: "S",
             available: true,
             priceEur: 44,
-            imageLink: "https://google.com"
+            imageLink: "https://google.com",
+            quantity: 3
         }
     ]
 }
