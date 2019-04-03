@@ -6,13 +6,13 @@
                 <div class="productContainer">
                     <img src="https://via.placeholder.com/100/efefef/000000?text=Tshirt" alt="product">
                     <p class="productName">{{item.productName}}</p>
-                    <p>Price: <strong>{{item.priceEur}} €</strong></p>
+                    <p>Price: <strong>{{item.price}} €</strong></p>
                     <div id="div-quantity" >
                     <button class="btn-quantity" v-on:click="item.quantity--;if(item.quantity<=0){item.quantity=1}">-</button>
                     tk: {{item.quantity}}
                     <button class="btn-quantity" v-on:click="item.quantity++">+</button>
                     </div>
-                    <p>Size: {{item.size}}</p>
+                    <!--<p>Size: {{item.size}}</p>-->
                     <!--<p>Material: {{item.material}}</p>-->
                     <!--<div class="watchButtonDiv"><button type="button" v-on:click="watchItem(item)">Vaata</button></div>-->
                     <div class="deleteButtonDiv"><button type="button" v-on:click="deleteFromCart(item)">Delete</button></div>

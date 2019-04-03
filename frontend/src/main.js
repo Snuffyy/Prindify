@@ -42,16 +42,18 @@ Vue.mixin({
                 }
             };
             let forRegister = {
-                id: 0,
-                name: "My design",
+                id: 1,
+                name: "Design",
+                productName: "Design",
+                quantity: 1,
                 description: "N/A (self-designed)",
                 material: document.querySelector("select[name='material']").value.toUpperCase(),
                 type: "GENERIC",
                 size: document.querySelector("input[name='size']:checked").value.toUpperCase(),
-                price: 20,
+                price: Math.floor((Math.random() * 50) + 20),
                 image_url: "https://google.com"
             };
-            /*shared.inCart.push(designed)*/
+            shared.inCart.push(forRegister)
             /*navigator.sendBeacon('localhost:8080/api/baskets/item', designed)*/
             forCart = JSON.stringify(forCart)
             forRegister = JSON.stringify(forRegister)
@@ -75,7 +77,7 @@ Vue.mixin({
         cartPrice: function () {
             let k = 0;
             for(let i = 0; i < shared.inCart.length; i++){
-                k += shared.inCart[i].priceEur * shared.inCart[i].quantity;
+                k += shared.inCart[i].price * shared.inCart[i].quantity;
             }
             return k
         }
@@ -149,7 +151,7 @@ const shared =  {
             category: "T-shirts",
             size: "M",
             available: true,
-            priceEur: 25,
+            price: 25,
             imageLink: "https://google.com",
             quantity: 2
         },
@@ -161,7 +163,7 @@ const shared =  {
             category: "T-shirts",
             size: "S",
             available: true,
-            priceEur: 44,
+            price: 44,
             imageLink: "https://google.com",
             quantity: 3
         }

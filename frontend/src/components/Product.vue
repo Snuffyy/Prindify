@@ -1,13 +1,6 @@
 <template>
     <div id="divToChange">
-        <!--<component v-bind:is="componentName() === 'Product'">WOW WOWO WOOWOOWO</component>-->
         <div v-bind:key="product.id" v-for="product in products">
-            <!--<ul>-->
-                <!--<li>Category: {{product.category}}</li>-->
-                <!--<li>Available: {{product.available}}</li>-->
-                <!--&lt;!&ndash;<li>Image: <img :src="product.imageLink" alt="product"></li>&ndash;&gt;-->
-                <!--<li>Image: <img src="https://via.placeholder.com/150/efefef/000000?text=Tshirt" alt="product"></li>-->
-            <!--</ul>-->
             <div class="productContainer">
                 <img src="https://via.placeholder.com/150/efefef/000000?text=Tshirt" alt="product">
                 <p class="productName">{{product.name}}</p>

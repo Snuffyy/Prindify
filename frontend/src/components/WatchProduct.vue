@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="watch-root">
         <div class="backButtonDiv"><button type="button" v-on:click="goToList">Back</button></div>
         <div class="productName">{{shared.product.name}}</div>
         <br/>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="addToCartButton"><button type="button" v-on:click="addToCart(shared.product)">Add to cart</button></div>
-        <p>People also watch:</p>
+        <p id="also">People also watch:</p>
         <div v-bind:key="product.id" v-for="product in returnShared().productsList">
             <SingleProduct v-bind:oneProduct="product"></SingleProduct>
         </div>
@@ -75,12 +75,15 @@
 </script>
 
 <style scoped>
+    .productContainer {
+        background-color: #f2f2f2;
+    }
     button {
         background-color: dodgerblue;
         text-decoration: none;
         border: none;
         color: white;
-        padding: 4px 12px;
+        padding: 6px 12px;
         text-align: center;
         display: inline-block;
         font-size: 12px;
@@ -90,6 +93,11 @@
         text-align: left;
         margin-bottom: 5px;
         margin-top: 5px;
+        display: inline-block;
+    }
+    .backButtonDiv button {
+        text-align: left;
+        padding: 8px 16px;
         display: inline-block;
     }
     button:hover {
@@ -126,7 +134,13 @@
     .productView {
         display: inline-block;
     }
-    .addToCartButton {
+    .addToCartButton button {
         display: block;
+        padding: 8px 16px;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    #also {
+        margin-left: 5px;
     }
 </style>
