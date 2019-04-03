@@ -23,6 +23,13 @@ public class BasketRepositoryHttpSession implements BasketRepository<HttpSession
     }
 
     @Override
+    public Basket updateBasket(Basket basket, HttpSession session) {
+        session.setAttribute(Basket.class.getSimpleName(), basket);
+
+        return basket;
+    }
+
+    @Override
     public void clear(Basket basket) {
         basket.getItems().clear();
     }

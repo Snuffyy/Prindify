@@ -33,6 +33,11 @@ public class BasketServiceHttpSession implements BasketService<HttpSession> {
     }
 
     @Override
+    public Basket updateBasket(Basket basket, HttpSession discriminator) {
+        return basketRepository.updateBasket(basket, discriminator);
+    }
+
+    @Override
     public Basket addItem(Basket basket, Item item) {
         basket.getItems().add(item);
 

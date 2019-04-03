@@ -11,5 +11,7 @@ public interface BasketRepository<T> {
 
     Optional<Basket> findBasket(T discriminator);
 
+    Basket updateBasket(Basket basket, T discriminator);
+
     void clear(Basket basket);
 }

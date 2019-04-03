@@ -67,7 +67,9 @@ public class BasketController {
         Item item = itemRequestQueryService.convert(itemQueryObject);
         Basket basket = findBasket(session);
 
-        return basketService.updateItem(basket, itemId, item);
+        basket = basketService.updateItem(basket, itemId, item);
+
+        return basketService.updateBasket(basket, session);
     }
 
     @ApiOperation(value = "Delete Item from Basket for current session")

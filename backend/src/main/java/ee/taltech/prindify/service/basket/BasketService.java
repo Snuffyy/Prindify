@@ -12,6 +12,8 @@ public interface BasketService<T> {
 
     void createBasket(T discriminator);
 
+    Basket updateBasket(Basket basket, T discriminator);
+
     Basket addItem(Basket basket, Item item);
 
     Basket updateItem(Basket basket, String id, Item item);
