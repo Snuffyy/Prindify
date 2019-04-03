@@ -25,6 +25,6 @@ spring:
     port: 6379
 
 client:
-  host: "http://localhost:8081"
+  host: "*"
 
 

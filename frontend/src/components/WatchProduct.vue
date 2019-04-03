@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="backButtonDiv"><button type="button" v-on:click="goToList">Tagasi</button></div>
-        <div class="productName">{{shared.product.productName}}</div>
+        <div class="backButtonDiv"><button type="button" v-on:click="goToList">Back</button></div>
+        <div class="productName">{{shared.product.name}}</div>
         <br/>
         <div class="productView">
             <div class="leftSide">
@@ -11,15 +11,14 @@
                 <div class="size"><p>Size: {{shared.product.size}}</p></div><br/>
                 <div class="material"><p>Material: {{shared.product.material}}</p></div><br/>
                 <div class="description"><p>Description: {{shared.product.description}}</p></div><br/>
-                <div class="price"><p>Price: <strong>{{shared.product.priceEur}} €</strong></p></div>
+                <div class="price"><p>Price: <strong>{{shared.product.price}} €</strong></p></div>
             </div>
         </div>
-        <div class="addToCartButton"><button type="button" v-on:click="addToCart(shared.product)">Liisa korvi</button></div>
-        <p>Ka vaatavad:</p>
-        <div v-bind:key="product.id" v-for="product in productsList">
+        <div class="addToCartButton"><button type="button" v-on:click="addToCart(shared.product)">Add to cart</button></div>
+        <p>People also watch:</p>
+        <div v-bind:key="product.id" v-for="product in returnShared().productsList">
             <SingleProduct v-bind:oneProduct="product"></SingleProduct>
         </div>
-        <!--<Product v-bind:products="shared.productsList" />-->
     </div>
 </template>
 
@@ -31,46 +30,47 @@
         props: ["shared"],
         components: {
             SingleProduct
-        },
-        data() {
-            return {
-                productsList: [
-                    {
-                        id: 1,
-                        productName: "T-shirt 1",
-                        description: "blah blah blah",
-                        material: "100% cotton",
-                        category: "T-shirts",
-                        size: "M",
-                        available: true,
-                        priceEur: 25,
-                        imageLink: "https://google.com"
-                    },
-                    {
-                        id: 2,
-                        productName: "T-shirt 2",
-                        description: "blah blah blah2",
-                        material: "100% cotton",
-                        category: "T-shirts",
-                        size: "S",
-                        available: true,
-                        priceEur: 44,
-                        imageLink: "https://google.com"
-                    },
-                    {
-                        id: 3,
-                        productName: "T-shirt 3",
-                        description: "blah blah blah3",
-                        material: "100% cotton",
-                        category: "T-shirts",
-                        size: "S",
-                        available: true,
-                        priceEur: 28,
-                        imageLink: "https://google.com"
-                    }
-                ]
-            }
         }
+        // ,
+        // data() {
+        //     return {
+        //         productsList: [
+        //             {
+        //                 id: 1,
+        //                 productName: "T-shirt 1",
+        //                 description: "blah blah blah",
+        //                 material: "100% cotton",
+        //                 category: "T-shirts",
+        //                 size: "M",
+        //                 available: true,
+        //                 priceEur: 25,
+        //                 imageLink: "https://google.com"
+        //             },
+        //             {
+        //                 id: 2,
+        //                 productName: "T-shirt 2",
+        //                 description: "blah blah blah2",
+        //                 material: "100% cotton",
+        //                 category: "T-shirts",
+        //                 size: "S",
+        //                 available: true,
+        //                 priceEur: 44,
+        //                 imageLink: "https://google.com"
+        //             },
+        //             {
+        //                 id: 3,
+        //                 productName: "T-shirt 3",
+        //                 description: "blah blah blah3",
+        //                 material: "100% cotton",
+        //                 category: "T-shirts",
+        //                 size: "S",
+        //                 available: true,
+        //                 priceEur: 28,
+        //                 imageLink: "https://google.com"
+        //             }
+        //         ]
+        //     }
+        // }
     }
 </script>
 

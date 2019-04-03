@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Checkout</p>
+        <p class="main-header">Checkout</p>
         <form action="">
                 <legend>My information:</legend>
                 <div class="leftside">
@@ -50,10 +50,11 @@
                 </div>
                 <div id="comments-div">
                     Comments:<br>
-                    <textarea name="" id="comments" placeholder="Any comments go here"></textarea><br>
-                    <!--<input type="text" name="other" value=""><br>-->
+                    <textarea name="" id="comments" placeholder="Any comments go here" cols="50" rows="5"></textarea><br>
                 </div>
-            <input type="submit" value="ORDER">
+            <div onclick="alert('Order submitted! Have a nice day:)')">
+                <router-link to="/home"><input type="submit" value="ORDER"></router-link>
+            </div>
         </form>
     </div>
 </template>
@@ -87,6 +88,14 @@
     }
     input[type=submit] {
         margin-left: 10px;
+        background-color: dodgerblue;
+        text-decoration: none;
+        border: none;
+        color: white;
+        padding: 12px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 10px;
     }
     legend {
         margin-left: 10px;
@@ -105,5 +114,19 @@
         margin: 0;
         padding: 0;
         overflow: auto;
+    }
+    .main-header {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    legend {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 20px;
+        text-decoration-line: underline;
+    }
+    .leftside, .rightside, #comments-div, #shipping-choice {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 14px;
     }
 </style>

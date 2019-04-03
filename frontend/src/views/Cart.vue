@@ -1,16 +1,16 @@
 <template>
     <div>
         <div class="cartView" v-if="returnCart() !== undefined && returnCart().length !== 0">
-            <h2>My cart:</h2>
+            <p class="main-header">My cart:</p>
             <div class="cartListView" v-bind:key="item.id" v-for="item in returnCart()">
                 <div class="productContainer">
                     <img src="https://via.placeholder.com/100/efefef/000000?text=Tshirt" alt="product">
                     <p class="productName">{{item.productName}}</p>
                     <p>Price: <strong>{{item.priceEur}} €</strong></p>
-                    <div id="div-quantity">
-                    <button class="btn-quantity">-</button>
+                    <div id="div-quantity" >
+                    <button class="btn-quantity" v-on:click="item.quantity--;if(item.quantity<=0){item.quantity=1}">-</button>
                     tk: {{item.quantity}}
-                    <button class="btn-quantity">+</button>
+                    <button class="btn-quantity" v-on:click="item.quantity++">+</button>
                     </div>
                     <p>Size: {{item.size}}</p>
                     <!--<p>Material: {{item.material}}</p>-->
@@ -18,6 +18,7 @@
                     <div class="deleteButtonDiv"><button type="button" v-on:click="deleteFromCart(item)">Delete</button></div>
                 </div>
             </div>
+            <p id="total">Total: <strong>{{cartPrice()}}€</strong></p>
             <button id="btn-checkout"><router-link to="/ordering">CHECK OUT</router-link></button>
         </div>
     </div>
@@ -111,5 +112,29 @@
     #btn-checkout a {
         text-decoration: none;
         color: white;
+    }
+    .deleteButtonDiv {
+        text-align: center;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+    }
+    .deleteButtonDiv button {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
+    .main-header {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    #total {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 28px;
+        margin-bottom: 5px;
+        margin-top: 10px;
     }
 </style>

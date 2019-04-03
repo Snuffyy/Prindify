@@ -16,9 +16,9 @@
         <div id="parameters">
             <p>Choose material:</p>
             <select name="material" id="material-select">
-                <option value="cotton" selected>Cotton</option>
-                <option value="poly">Poly</option>
-                <option value="cotton-poly">Cotton+Poly</option>
+                <option value="COTTON" selected>Cotton</option>
+                <option value="SILK">Silk</option>
+                <option value="LEATHER">Leather</option>
             </select>
             <p>Choose size:</p>
             <input class="radio-choice" id="xs" type="radio" name="size" value="xs"><label for="xs">XS</label><br/>
@@ -26,6 +26,7 @@
             <input class="radio-choice" id="m" type="radio" name="size" value="m"><label for="m">M</label><br/>
             <input class="radio-choice" id="l" type="radio" name="size" value="l"><label for="l">L</label><br/>
             <input class="radio-choice" id="xl" type="radio" name="size" value="xl"><label for="xl">XL</label><br/>
+            <input class="radio-choice" id="xxl" type="radio" name="size" value="xxl"><label for="xxl">XXL</label><br/>
             <input id="choose-img-btn" type="file" value="val" name="choose-img-btn" accept="image/png" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
             <!--<button onclick="if (window.File && window.FileReader && window.FileList && window.Blob) {alert('works')
              } else { alert('The File APIs are not fully supported in this browser.'); }">Check if works</button>-->

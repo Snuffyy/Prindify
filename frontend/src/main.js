@@ -4,6 +4,24 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+
+function request(method, url, data) {
+    return fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: data
+    })
+        .then(response => response.json())
+}
+
+function get(url) {
+    return request('GET', url, null)
+}
+function post(url, data) {
+    return request('POST', url, data)
+}
+
+
 Vue.mixin({
     methods: {
         watchItem: function (product) {
@@ -17,18 +35,30 @@ Vue.mixin({
             shared.inCart.push(item)
         },
         addDesign: function () {
-            let designed = {
-                id: 1,
-                productName: "My design",
+            let forCart = {
+                count: 2,
+                product: {
+                    id: 2,
+                }
+            };
+            let forRegister = {
+                id: 0,
+                name: "My design",
                 description: "N/A (self-designed)",
-                material: document.querySelector("select[name='material']").value,
-                category: "T-shirts",
-                size: document.querySelector("input[name='size']:checked").value,
-                available: true,
-                priceEur: 20,
-                imageLink: "https://google.com" // TODO replace
-            }
-            shared.inCart.push(designed)
+                material: document.querySelector("select[name='material']").value.toUpperCase(),
+                type: "GENERIC",
+                size: document.querySelector("input[name='size']:checked").value.toUpperCase(),
+                price: 20,
+                image_url: "https://google.com"
+            };
+            /*shared.inCart.push(designed)*/
+            /*navigator.sendBeacon('localhost:8080/api/baskets/item', designed)*/
+            forCart = JSON.stringify(forCart)
+            forRegister = JSON.stringify(forRegister)
+
+            post('http://localhost:8080/api/t-shirts', forRegister).then(post('http://localhost:8080/api/baskets/item', forCart))
+            // post('localhost:8080/api/baskets/item', forCart)
+
         },
         returnShared: function () {
             return shared
@@ -41,11 +71,25 @@ Vue.mixin({
         },
         returnCart: function () {
             return shared.inCart
+        },
+        cartPrice: function () {
+            let k = 0;
+            for(let i = 0; i < shared.inCart.length; i++){
+                k += shared.inCart[i].priceEur * shared.inCart[i].quantity;
+            }
+            return k
         }
     },
     componentNames: ['Product', 'WatchProduct'],
     componentName: 'Product',
 })
+
+fetch('http://localhost:8080/api/products')
+    .then(resp => resp.json())
+    .then(function(data) {
+        // console.log("HERE: " + data)
+        shared.productsList = data
+    })
 
 const shared =  {
     isWatchingProduct: false,
@@ -60,7 +104,7 @@ const shared =  {
         priceEur: 25,
         imageLink: "https://google.com"
     },
-    productsList: [
+    /*productsList: [
         {
             id: 1,
             productName: "T-shirt 1",
@@ -94,7 +138,8 @@ const shared =  {
             priceEur: 28,
             imageLink: "https://google.com"
         }
-    ],
+    ],*/
+    productsList: [],
     inCart: [
         {
             id: 1,
