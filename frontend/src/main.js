@@ -46,7 +46,7 @@ Vue.mixin({
                 name: "Design",
                 productName: "Design",
                 quantity: 1,
-                description: "N/A (self-designed)",
+                description: "User-designed T-shirt",
                 material: document.querySelector("select[name='material']").value.toUpperCase(),
                 type: "GENERIC",
                 size: document.querySelector("input[name='size']:checked").value.toUpperCase(),
@@ -146,6 +146,7 @@ const shared =  {
         {
             id: 1,
             productName: "T-shirt 1",
+            name: "T-shirt 1",
             description: "blah blah blah",
             material: "100% cotton",
             category: "T-shirts",
@@ -158,6 +159,7 @@ const shared =  {
         {
             id: 2,
             productName: "T-shirt 2",
+            name: "T-shirt 2",
             description: "blah blah blah2",
             material: "100% cotton",
             category: "T-shirts",

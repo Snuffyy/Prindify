@@ -5,11 +5,11 @@
             <div class="cartListView" v-bind:key="item.id" v-for="item in returnCart()">
                 <div class="productContainer">
                     <img src="https://via.placeholder.com/100/efefef/000000?text=Tshirt" alt="product">
-                    <p class="productName">{{item.productName}}</p>
+                    <p class="productName">{{item.name}}</p>
                     <p>Price: <strong>{{item.price}} €</strong></p>
                     <div id="div-quantity" >
                     <button class="btn-quantity" v-on:click="item.quantity--;if(item.quantity<=0){item.quantity=1}">-</button>
-                    tk: {{item.quantity}}
+                    tk: {{item.quantity=1}}
                     <button class="btn-quantity" v-on:click="item.quantity++">+</button>
                     </div>
                     <!--<p>Size: {{item.size}}</p>-->
