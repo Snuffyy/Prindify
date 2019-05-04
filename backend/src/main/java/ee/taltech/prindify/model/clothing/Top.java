@@ -11,7 +11,7 @@ public abstract class Top extends Clothing {
     @Setter
     private Size size;
 
-    enum Size {
+    public enum Size {
         XS, S, M, L, XL, XXL
     }
 }
