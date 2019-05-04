@@ -52,6 +52,8 @@ public class BasketController {
     public Basket addItemToBasket(@RequestBody ItemQueryObject itemQueryObject,
         HttpSession session) {
 
+        System.out.println(session.getId());
+
         Item item = itemRequestQueryService.convert(itemQueryObject);
         Basket basket = findBasket(session);
 

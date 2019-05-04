@@ -7,6 +7,7 @@ Vue.config.productionTip = false
 
 function request(method, url, data) {
     return fetch(url, {
+        credentials: 'include',
         method,
         headers: { "Content-Type": "application/json" },
         body: data
@@ -38,7 +39,7 @@ Vue.mixin({
             let forCart = {
                 count: 2,
                 product: {
-                    id: 2,
+                    id: 1,
                 }
             };
             let forRegister = {
@@ -58,9 +59,13 @@ Vue.mixin({
             forCart = JSON.stringify(forCart)
             forRegister = JSON.stringify(forRegister)
 
-            post('http://localhost:8080/api/t-shirts', forRegister).then(post('http://localhost:8080/api/baskets/item', forCart))
-            // post('localhost:8080/api/baskets/item', forCart)
+            //post('http://localhost:8080/api/t-shirts', forRegister).then(post('http://localhost:8080/api/baskets/item', forCart))
 
+            post('http://localhost:8080/api/t-shirts', forRegister)
+            console.log(get("http://localhost:8080/api/session"))
+
+            post('http://localhost:8080/api/baskets/item', forCart)
+            console.log(get("http://localhost:8080/api/session"))
         },
         returnShared: function () {
             return shared
