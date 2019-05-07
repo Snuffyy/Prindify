@@ -4,7 +4,7 @@
             <div class="productContainer">
                 <img src="https://via.placeholder.com/150/efefef/000000?text=Tshirt" alt="product">
                 <p class="productName">{{product.name}}</p>
-                <p>Price: <strong>{{product.price}} €</strong></p>
+                <p id="price-p">Price: <strong>{{product.price}} €</strong></p>
                 <div class="watchButtonDiv"><button type="button" v-on:click="watchItem(product)">Watch</button></div>
             </div>
         </div>
