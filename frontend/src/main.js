@@ -4,6 +4,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+const api_base_url = 'http://localhost:8080/api'  // dev build
+// const api_base_url = 'http://ec2-35-175-248-53.compute-1.amazonaws.com/api'  // prod build
+
 function request(method, url, data) {
     return fetch(url, {
         credentials: 'include',
@@ -23,13 +26,12 @@ function post(url, data) {
 Vue.mixin({
     methods: {
         watchItem: function (product) {
-            // TODO: recheck
             shared.isWatchingProduct = true
             shared.product = product
         },
         deleteFromCart: function (product) {
-            // TODO: recheck
-            let tmpUrl = 'http://localhost:8080/api/baskets/item/' + product.id;
+            product.count = 1
+            let tmpUrl = api_base_url + '/baskets/item/' + product.id;
             fetch(tmpUrl, {
                 credentials: 'include',
                 method: 'delete',
@@ -51,18 +53,17 @@ Vue.mixin({
             product.update = 0
             shared.cart.push(product)
             shared.cartObj.cart.push(product)
-            post('http://localhost:8080/api/baskets/item', JSON.stringify(itemToAdd))
+            post(api_base_url + '/baskets/item', JSON.stringify(itemToAdd))
         },
         addDesign: function () {
             let forCart = {
                 count: 2,
-                // TODO: redo
                 product: {
-                    id: 1,
+                    id: Math.floor((Math.random() * 5000) + 2000),
                 }
             };
             let forRegister = {
-                id: 1,
+                id: Math.floor((Math.random() * 5000) + 2000),
                 name: "Design",
                 description: "User-designed T-shirt",
                 material: document.querySelector("select[name='material']").value.toUpperCase(),
@@ -74,11 +75,12 @@ Vue.mixin({
             };
 
             shared.cart.push(forRegister)
+            shared.cartObj.cart.push(forRegister)
 
             forCart = JSON.stringify(forCart)
             forRegister = JSON.stringify(forRegister)
 
-            post('http://localhost:8080/api/t-shirts', forRegister).then(post('http://localhost:8080/api/baskets/item', forCart))
+            post(api_base_url + '/t-shirts', forRegister).then(post(api_base_url + '/baskets/item', forCart))
 
         },
         returnShared: function () {
@@ -88,8 +90,7 @@ Vue.mixin({
             shared.isWatchingProduct = false
         },
         fetchCart: function () {
-            // TODO recheck
-            fetch('http://localhost:8080/api/baskets')
+            fetch(api_base_url + '/baskets')
                 .then(resp => resp.json())
                 .then(function(data) {
                     shared.inCart = data.items
@@ -97,7 +98,6 @@ Vue.mixin({
             return shared.inCart
         },
         returnCart: function () {
-            // TODO: recheck
             // return shared.inCart
             // for (let i = 0; i < shared.cart.length; i++) {
             //     shared.cart[i].count = 22
@@ -120,9 +120,6 @@ Vue.mixin({
             }
             return tmp_price
         },
-        returnItemCount: function (item) {
-            return item.count
-        },
         reset: function () {
             shared.cart = []
             shared.cartObj.cart = []
@@ -132,13 +129,13 @@ Vue.mixin({
     componentName: 'Product',
 })
 
-fetch('http://localhost:8080/api/products')
+fetch(api_base_url + '/products')
     .then(resp => resp.json())
     .then(function(data) {
         shared.productsList = data
     })
 
-fetch('http://localhost:8080/api/baskets') // todo recheck
+fetch(api_base_url + '/baskets')
     .then(resp => resp.json())
     .then(function(data) {
         shared.inCart = data.items
