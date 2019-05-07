@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Swal from 'sweetalert2'
 
 Vue.config.productionTip = false
 
@@ -21,6 +22,34 @@ function get(url) {
 }
 function post(url, data) {
     return request('POST', url, data)
+}
+
+let added_alert =  function () {
+    let timerInterval
+    Swal.fire({
+        position: 'bottom',
+        title: 'Added to cart',
+        html: 'I will close in <strong></strong> seconds.',
+        timer: 2000,
+        onBeforeOpen: () => {
+            Swal.showLoading()
+            timerInterval = setInterval(() => {
+                Swal.getContent().querySelector('strong')
+                    .textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        onClose: () => {
+            clearInterval(timerInterval)
+        },
+        toast: 'true',
+        animation: 'false'
+    }).then((result) => {
+        if (
+            result.dismiss === Swal.DismissReason.timer
+        ) {
+            console.log('I was closed by the timer')
+        }
+    })
 }
 
 Vue.mixin({
@@ -54,6 +83,7 @@ Vue.mixin({
             shared.cart.push(product)
             shared.cartObj.cart.push(product)
             post(api_base_url + '/baskets/item', JSON.stringify(itemToAdd))
+            added_alert()
         },
         addDesign: function () {
             let forCart = {
@@ -81,7 +111,7 @@ Vue.mixin({
             forRegister = JSON.stringify(forRegister)
 
             post(api_base_url + '/t-shirts', forRegister).then(post(api_base_url + '/baskets/item', forCart))
-
+            added_alert()
         },
         returnShared: function () {
             return shared
@@ -123,11 +153,44 @@ Vue.mixin({
         reset: function () {
             shared.cart = []
             shared.cartObj.cart = []
+        },
+        checkout_alert: function () {
+            Swal.fire('Order submitted!', 'The email will be sent shortly. Have a nice day:)', 'success')
         }
     },
     componentNames: ['Product', 'WatchProduct'],
     componentName: 'Product',
 })
+
+/*
+,
+        added_alert: function () {
+            let timerInterval
+            Swal.fire({
+                position: 'bottom',
+                title: 'Added to cart',
+                html: 'I will close in <strong></strong> seconds.',
+                timer: 725,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        }
+*/
 
 fetch(api_base_url + '/products')
     .then(resp => resp.json())

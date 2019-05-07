@@ -52,7 +52,7 @@
                     Comments:<br>
                     <textarea name="" id="comments" placeholder="Any comments go here" cols="50" rows="5"></textarea><br>
                 </div>
-            <div v-on:click="reset()" onclick="alert('Order submitted! Have a nice day:)')">
+            <div v-on:click="checkout_alert();reset()">
                 <router-link to="/"><input type="submit" value="ORDER"></router-link>
             </div>
         </form>
