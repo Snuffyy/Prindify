@@ -27,7 +27,7 @@
     </div>
   </div>
 </template>
-<style>
+<style scoped>
   .about {
     border-radius: 5px;
     background-color: #f2f2f2;

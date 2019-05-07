@@ -1,7 +1,6 @@
 <template>
     <div>
         <p class="main-header">DESIGN</p>
-        <!--https://i.dlpng.com/static/png/304381_thumb.png-->
 
         <div id="preview-div">
             <div id="img-container">
@@ -9,10 +8,6 @@
                 <img id="preview" src="https://via.placeholder.com/215/f3f3ef/000000?text=PREVIEW" width="140" height="140"/>
             </div>
         </div>
-
-        <!--<img id="preview" src="https://via.placeholder.com/300/efefef/000000?text=PREVIEW" alt="preview" width="300" height="300" />-->
-        <!--<img src="https://via.placeholder.com/300/efefef/000000?text=PREVIEW" alt="product">-->
-
         <div id="parameters">
             <p>Choose material:</p>
             <select name="material" id="material-select">
@@ -28,12 +23,7 @@
             <input class="radio-choice" id="xl" type="radio" name="size" value="xl"><label for="xl">XL</label><br/>
             <input class="radio-choice" id="xxl" type="radio" name="size" value="xxl"><label for="xxl">XXL</label><br/>
             <input id="choose-img-btn" type="file" value="val" name="choose-img-btn" accept="image/png" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
-            <!--<button onclick="if (window.File && window.FileReader && window.FileList && window.Blob) {alert('works')
-             } else { alert('The File APIs are not fully supported in this browser.'); }">Check if works</button>-->
-            <!--<button onclick="console.log(document.getElementById('choose-img-btn').value)">Upload .png</button>-->
         </div>
-
-        <!--<input id="order-btn" type="submit" value="ORDER" onload="document.getElementById('choose-img-btn').addEventListener('change', handleFileSelect, false);">-->
         <input id="order-btn" type="submit" value="ADD TO CART" v-on:click='addDesign()'>
     </div>
 </template>

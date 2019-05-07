@@ -52,8 +52,8 @@
                     Comments:<br>
                     <textarea name="" id="comments" placeholder="Any comments go here" cols="50" rows="5"></textarea><br>
                 </div>
-            <div onclick="alert('Order submitted! Have a nice day:)')">
-                <router-link to="/home"><input type="submit" value="ORDER"></router-link>
+            <div v-on:click="reset()" onclick="alert('Order submitted! Have a nice day:)')">
+                <router-link to="/"><input type="submit" value="ORDER"></router-link>
             </div>
         </form>
     </div>
@@ -66,6 +66,12 @@
 </script>
 
 <style scoped>
+    /** {*/
+        /*all: revert;*/
+    /*}*/
+    textarea, #comments {
+        resize: none;
+    }
     input[type=text], select, textarea {
         padding: 8px;
         border: 1px solid #ccc;

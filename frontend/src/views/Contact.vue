@@ -278,7 +278,7 @@
         </form>
     </div>
 </template>
-<style>
+<style scoped>
 
     input[type=text], select, textarea {
         width: 100%;
